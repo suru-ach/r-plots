@@ -9,18 +9,11 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.post('/', async(req, res) => {
-    try {
-        fs.rmSync('./public/cases_plot.png');
-    } catch(err) {
-        console.log(err);
-        return res.json({msg: 'failed', data: null});
-    }
-    
-    let {startDate, endDate} = req.body;
+    let {startDate, endDate, country} = req.body;
     startDate = (startDate == '') ? "2020-01-03" : startDate;
     endDate = (endDate == '') ? "2023-01-06" : endDate;
 
-    let result = await R.callMethod("./ex-async.R", "plot_cases", {startDate, endDate});
+    let result = await R.callMethod("./ex-async.R", "plot_cases", {startDate, endDate, country});
     return res.json({msg: 'success', data: {result}});
 });
 
