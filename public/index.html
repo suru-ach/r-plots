@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: monospace;
+            margin: 0;
+        }
+        body > *{
+            padding-top: 12px;
+            padding-bottom: 12px;
+            padding-left: 12px;
+        }
+        img {
+            padding: 0;
+        }
+        h2 {
+            background: rgba(0,0,0,0.1);
+        }
+        h6 {
+            font-family: sans-serif;
+        }
+        #cases {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        #deaths {
+            margin-top: 20px;
+        }
+        #loading {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Plot</h2>
+    <form id="form">
+        <h6>Enter the range</h2>
+        <label for="">Start date</label>
+        <input type="date" id="startDate">
+        <label for="">To date</label>
+        <input type="date" id="toDate">
+        <button type="submit">get plot</button>
+    </form>
+    <p id="loading">loading...</p>
+    <p>Cases Plot</p>
+    <img src="" alt="" id="cases" style="width: 100%">
+    <p>Deaths Plot</p>
+    <img src="" alt="" id="deaths" style="width: 100%">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const startDate = document.getElementById('startDate');
+        const toDate = document.getElementById('toDate');
+        const form = document.getElementById('form');
+        const img_c = document.getElementById('cases');
+        const img_d = document.getElementById('deaths');
+        const loading = document.getElementById('loading');
+
+        const getDate = async() => {
+            loading.style.display = 'block';
+            try {
+                const res = await axios.post('/', { startDate: startDate.value, endDate: toDate.value });
+                loading.style.display = 'none';
+                const imgs = res.data.data.result;
+                img_c.src = res.data.data.result[0] + "?" + new Date().getTime();
+                img_d.src = res.data.data.result[1] + "?" + new Date().getTime();
+                
+            } catch(err) {
+                console.log(err);
+            }
+        }
+        
+        const get = (e) => {
+            e.preventDefault();
+            getDate();
+        }
+        form.addEventListener('submit', (e) => get(e));
+    </script>
+</body>
+</html>
