@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Covi-19 Analysis</title>
     <style>
         * {
             font-family: monospace;
@@ -16,13 +16,25 @@
             padding-top: 12px;
             padding-bottom: 12px;
             padding-left: 12px;
+            background: ghostwhite;
+
+        }
+        
+        .plot-h {
+            display: none;
         }
 
         img {
-            padding: 0;
+            width: 90%;
+            padding: 0%;
         }
 
-        h2 {
+        .images {
+            margin: auto;
+            text-align: center;
+        }
+
+        h1 {
             background: rgba(0, 0, 0, 0.1);
         }
 
@@ -42,25 +54,40 @@
         #loading {
             display: none;
         }
+
+        input,
+        button,
+        select {
+            padding: 12px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 
 <body>
-    <h2>Plot</h2>
+    <h1>Covid-19 data Plot</h1>
     <form id="form">
-        <h6>Enter the range</h2>
-            <label for="">Start date</label>
-            <input type="date" id="startDate">
-            <label for="">To date</label>
-            <input type="date" id="toDate">
-            <button type="submit">get plot</button>
-            <select name="" id="country"></select>
+        <h2>Enter the range</h2>
+        <label for="">Start date</label>
+        <input type="date" id="startDate">
+        <label for="">To date</label>
+        <input type="date" id="toDate"><br>
+        <label for="country">Select Country</label>
+        <select name="" id="country"></select><br>
+        <button type="submit">get plot</button>
     </form>
-    <p id="loading">loading...</p>
-    <p>Cases Plot</p>
-    <img src="" alt="" id="cases" style="width: 100%">
-    <p>Deaths Plot</p>
-    <img src="" alt="" id="deaths" style="width: 100%">
+    <div class="plot-container">
+
+        <p id="loading">loading...</p>
+        <div class="images">
+            <h3 class="plot-h">Cases Plot</h3>
+            <img src="" alt="" id="cases">
+        </div>
+        <div class="images">
+            <h3 class="plot-h">Deaths Plot</h3>
+            <img src="" alt="" id="deaths">
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./main.js"></script>
 </body>
