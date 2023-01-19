@@ -45,8 +45,6 @@ plot_cases <- function(startDate, endDate, country) {
       main = paste(c("new_deaths vs date, in ", country), sep = " ", collapse = "")
     )
     dev.off()
-
-    png(file = "./public/bar_plot.png")
-    barplot()
+    
     print(c("./cases_plot.png", "./death_plot.png"))
 }
