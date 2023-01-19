@@ -11,18 +11,20 @@
             font-family: monospace;
             margin: 0;
         }
-
+        
         body>* {
             padding-top: 12px;
             padding-bottom: 12px;
             padding-left: 12px;
         }
-
+        .plot-h{
+            display: none;
+        }
         img {
             padding: 0;
         }
 
-        h2 {
+        h1 {
             background: rgba(0, 0, 0, 0.1);
         }
 
@@ -42,24 +44,29 @@
         #loading {
             display: none;
         }
+        input, button, select{
+            padding: 12px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 
 <body>
-    <h2>Plot</h2>
+    <h1>Covid-19 data Plot</h1>
     <form id="form">
-        <h6>Enter the range</h2>
+        <h2>Enter the range</h2>
             <label for="">Start date</label>
             <input type="date" id="startDate">
             <label for="">To date</label>
-            <input type="date" id="toDate">
+            <input type="date" id="toDate"><br>
+            <label for="country">Select Country</label>
+            <select name="" id="country"></select><br>
             <button type="submit">get plot</button>
-            <select name="" id="country"></select>
     </form>
     <p id="loading">loading...</p>
-    <p>Cases Plot</p>
+    <h3 class="plot-h">Cases Plot</h3>
     <img src="" alt="" id="cases" style="width: 100%">
-    <p>Deaths Plot</p>
+    <h3 class="plot-h">Deaths Plot</h3>
     <img src="" alt="" id="deaths" style="width: 100%">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./main.js"></script>
