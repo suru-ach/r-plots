@@ -1,4 +1,3 @@
-#
 # get csv data
 #
 data <- read.csv("WHO-COVID-19-global-data.csv")
@@ -8,43 +7,45 @@ data$New_deaths = as.integer(data$New_deaths)
 
 # set up limits for dates
 #dateStart <- as.Date("2022-01-01")
-# dateStart <- min(data.country$Date_reported)
+# dateStart <- min(data_country$Date_reported)
 
 #dateEnd <- as.Date("2020-01-01")
-# dateEnd <- max(data.country$Date_reported)
+# dateEnd <- max(data_country$Date_reported)
 
 plot_cases <- function(startDate, endDate, country) {
-    startDate = as.Date(startDate)
-    endDate = as.Date(endDate)
-    data.country <- subset(data, Country == country)
 
+    sDate = as.Date(startDate)
+    eDate = as.Date(endDate)
+    data_country <- subset(data, Country == country & (Date_reported > sDate & Date_reported < eDate))
+    # print(data_country)
 
     #plot with date and new case counts
     png(file = "./public/cases_plot.png", width = 2000, height = 800)
     plot(
-      x=data.country$Date_reported,
-      y=data.country$New_cases,
-      cex = 0.5,las = 2,pch = 16,
+      x=data_country$Date_reported,
+      y=data_country$New_cases,
+      cex = 0.5,las = 2,pch = 2,
       xlab = "date",
       ylab = "cases",
-      xlim = c(startDate, endDate),
-      ylim = c(0,max(data.country$New_cases)),
+      xlim = c(sDate, eDate),
+      col = "red",
+      ylim = c(0,max(data_country$New_cases)),
       main = paste(c("new_cases vs date, in ", country), sep = " ", collapse = "")
     )
     dev.off()
 
     png(file = "./public/death_plot.png", width = 2000, height = 800)
     plot(
-      x=data.country$Date_reported,
-      y=data.country$New_deaths,
+      x=data_country$Date_reported,
+      y=data_country$New_deaths,
       cex = 0.5,las = 2,pch = 2,
       xlab = "date",
       ylab = "deaths",
-      xlim = c(startDate, endDate),
-      ylim = c(0,max(data.country$New_deaths)),
+      col = "red",
+      xlim = c(sDate, eDate),
+      ylim = c(0,max(data_country$New_deaths)),
       main = paste(c("new_deaths vs date, in ", country), sep = " ", collapse = "")
     )
     dev.off()
-    
-    print(c("./cases_plot.png", "./death_plot.png"))
 }
+# plot_cases("2020-01-03", "2023-01-06", "India")

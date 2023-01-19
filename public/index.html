@@ -11,17 +11,28 @@
             font-family: monospace;
             margin: 0;
         }
-        
+
         body>* {
             padding-top: 12px;
             padding-bottom: 12px;
             padding-left: 12px;
+            background: ghostwhite;
+
         }
-        .plot-h{
+        .plot-container{
+        }
+        .plot-h {
             display: none;
         }
+
         img {
-            padding: 0;
+            width: 90%;
+            padding: 0%;
+        }
+
+        .images {
+            margin: auto;
+            text-align: center;
         }
 
         h1 {
@@ -44,7 +55,10 @@
         #loading {
             display: none;
         }
-        input, button, select{
+
+        input,
+        button,
+        select {
             padding: 12px;
             margin-top: 5px;
         }
@@ -55,19 +69,26 @@
     <h1>Covid-19 data Plot</h1>
     <form id="form">
         <h2>Enter the range</h2>
-            <label for="">Start date</label>
-            <input type="date" id="startDate">
-            <label for="">To date</label>
-            <input type="date" id="toDate"><br>
-            <label for="country">Select Country</label>
-            <select name="" id="country"></select><br>
-            <button type="submit">get plot</button>
+        <label for="">Start date</label>
+        <input type="date" id="startDate">
+        <label for="">To date</label>
+        <input type="date" id="toDate"><br>
+        <label for="country">Select Country</label>
+        <select name="" id="country"></select><br>
+        <button type="submit">get plot</button>
     </form>
-    <p id="loading">loading...</p>
-    <h3 class="plot-h">Cases Plot</h3>
-    <img src="" alt="" id="cases" style="width: 100%">
-    <h3 class="plot-h">Deaths Plot</h3>
-    <img src="" alt="" id="deaths" style="width: 100%">
+    <div class="plot-container">
+
+        <p id="loading">loading...</p>
+        <div class="images">
+            <h3 class="plot-h">Cases Plot</h3>
+            <img src="" alt="" id="cases">
+        </div>
+        <div class="images">
+            <h3 class="plot-h">Deaths Plot</h3>
+            <img src="" alt="" id="deaths">
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./main.js"></script>
 </body>

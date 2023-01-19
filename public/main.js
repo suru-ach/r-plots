@@ -20,8 +20,8 @@ const getDate = async () => {
         loading.style.display = 'none';
         plot_h.forEach(plot => plot.style.display = "block")
         const imgs = res.data.data.result;
-        img_c.src = res.data.data.result[0] + "?" + new Date().getTime();
-        img_d.src = res.data.data.result[1] + "?" + new Date().getTime();
+        img_c.src = "cases_plot.png" + "?" + new Date().getTime();
+        img_d.src = "death_plot.png" + "?" + new Date().getTime();
 
     } catch (err) {
         console.log(err);
