@@ -1,4 +1,4 @@
 *.csv
+*.pdf
 /node_modules
 /public/*.png
-*.pdf
