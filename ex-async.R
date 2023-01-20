@@ -29,6 +29,7 @@ plot_cases <- function(startDate, endDate, country) {
       ylab = "cases",
       xlim = c(sDate, eDate),
       col = "red",
+      type = "h",
       ylim = c(0,max(data_country$New_cases)),
       main = paste(c("new_cases vs date, in ", country), sep = " ", collapse = "")
     )
@@ -42,6 +43,7 @@ plot_cases <- function(startDate, endDate, country) {
       xlab = "date",
       ylab = "deaths",
       col = "red",
+      type = "h",
       xlim = c(sDate, eDate),
       ylim = c(0,max(data_country$New_deaths)),
       main = paste(c("new_deaths vs date, in ", country), sep = " ", collapse = "")
