@@ -61,6 +61,11 @@
             padding: 12px;
             margin-top: 5px;
         }
+        .stat {
+            display: none; 
+            justify-content: space-evenly;
+             margin: 24px 48px;
+        }
     </style>
 </head>
 
@@ -82,10 +87,20 @@
         <div class="images">
             <h3 class="plot-h">Cases Plot</h3>
             <img src="" alt="" id="cases">
+            <div class="stat" style="border-bottom: 1px dashed black; padding-bottom: 36px; ">
+    <p id="maxCases"></p>
+    <p id="minCases"></p>
+    <p id="avgCases"></p>
+            </div>
         </div>
         <div class="images">
             <h3 class="plot-h">Deaths Plot</h3>
             <img src="" alt="" id="deaths">
+            <div class="stat">
+    <p id="maxDeath"></p>
+    <p id="minDeath"></p>
+    <p id="avgDeath"></p>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

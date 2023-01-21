@@ -13,19 +13,36 @@ const img_d = document.getElementById('deaths');
 const loading = document.getElementById('loading');
 const plot_h = Array.from(document.querySelectorAll('.plot-h'));
 
+
+const maxCases = document.getElementById("maxCases");
+const minCases = document.getElementById("minCases");
+const avgCases = document.getElementById("avgCases");
+const maxDeath = document.getElementById("maxDeath");
+const minDeath = document.getElementById("minDeath");
+const avgDeath = document.getElementById("avgDeath");
+
+const stats = Array.from(document.querySelectorAll('.stat'));
+
 const getDate = async () => {
     const sd = new Date(startDate.value)
     const ed = new Date(toDate.value)
     if (sd > ed) {
-        alert("OOPS! Start date is greater than end date")
+        alert("OOPS! Start date is greater than end date");
     }
     else {
         loading.style.display = 'block';
+        stats.forEach(stat => stat.style.display = "flex");
         try {
             const res = await axios.post('/', { startDate: startDate.value, endDate: toDate.value, country: country.value });
             loading.style.display = 'none';
             plot_h.forEach(plot => plot.style.display = "block")
-            const imgs = res.data.data.result;
+            const payload = res.data.data.result;
+            maxDeath.innerHTML = 'max Death: '+payload[0];
+            minDeath.innerHTML = 'min Death: '+ Math.max(payload[1],0);
+            avgDeath.innerHTML = 'avg Death: '+payload[2];
+            maxCases.innerHTML = 'max Cases: '+payload[3];
+            minCases.innerHTML = 'min Cases: '+ Math.max(payload[4],0);
+            avgCases.innerHTML = 'avg Cases: '+payload[5];
             img_c.src = "./cases_plot.png" + "?" + new Date().getTime();
             img_d.src = "./death_plot.png" + "?" + new Date().getTime();
 

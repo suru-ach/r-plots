@@ -49,5 +49,18 @@ plot_cases <- function(startDate, endDate, country) {
       main = paste(c("new_deaths vs date, in ", country), sep = " ", collapse = "")
     )
     dev.off()
+
+    maxDeath <- max(data_country$New_deaths)
+    print(maxDeath)
+    minDeath <- min(data_country$New_deaths)
+    print(minDeath)
+    avgDeath <- mean(data_country$New_deaths)
+    print(avgDeath)
+    maxCases <- max(data_country$New_cases)
+    print(maxCases)
+    minCases <- min(data_country$New_cases)
+    print(minCases)
+    avgCases <- mean(data_country$New_cases)
+    print(avgCases)
 }
 # plot_cases("2020-01-03", "2023-01-06", "India")
