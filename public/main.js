@@ -21,6 +21,10 @@ const maxDeath = document.getElementById("maxDeath");
 const minDeath = document.getElementById("minDeath");
 const avgDeath = document.getElementById("avgDeath");
 
+const h = document.getElementById("h");
+const p = document.getElementById("p");
+const l = document.getElementById("l");
+
 const stats = Array.from(document.querySelectorAll('.stat'));
 
 const getDate = async () => {
@@ -33,7 +37,8 @@ const getDate = async () => {
         loading.style.display = 'block';
         stats.forEach(stat => stat.style.display = "flex");
         try {
-            const res = await axios.post('/', { startDate: startDate.value, endDate: toDate.value, country: country.value });
+            const type = h.checked ? "h" : p.checked? "p" : "l";
+            const res = await axios.post('/', { startDate: startDate.value, endDate: toDate.value, country: country.value, type });
             loading.style.display = 'none';
             plot_h.forEach(plot => plot.style.display = "block")
             const payload = res.data.data.result;

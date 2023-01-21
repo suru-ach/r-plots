@@ -79,6 +79,22 @@
         <input type="date" id="toDate" min="2020-01-03" max="2023-01-06"><br>
         <label for="country">Select Country</label>
         <select name="" id="country"></select><br>
+
+        <div style="display: flex; flex-direction: column; width: 30%;">
+            <div>
+                <input type="radio" id="h" name="plot-type" value="h" checked>
+                <label for="h">histogram plot</label>
+            </div>
+            <div>
+                <input type="radio" id="p" name="plot-type" value="p">
+                <label for="p">scatter plot</label>
+            </div>
+            <div>
+                <input type="radio" id="l" name="plot-type" value="l">
+                <label for="l">line plot</label>
+            </div>
+        </div>
+        
         <button type="submit">get plot</button>
     </form>
     <div class="plot-container">
