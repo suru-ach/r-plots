@@ -62,4 +62,5 @@ const get = (e) => {
     e.preventDefault();
     getDate();
 }
+
 form.addEventListener('submit', (e) => get(e));
